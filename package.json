@@ -1,0 +1,21 @@
+{
+  "name": "Under_Score",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/TB-Terence/Under_Score.git",
+  "author": "Jiabin <jiabintang@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "easeljs": "^1.0.2",
+    "preloadjs": "^1.0.1",
+    "soundjs": "^1.0.1",
+    "tweenjs": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/easeljs": "^1.0.0",
+    "@types/preloadjs": "^0.6.32",
+    "@types/soundjs": "^0.6.27",
+    "@types/tweenjs": "^1.0.0",
+    "typescript": "^3.2.2"
+  }
+}

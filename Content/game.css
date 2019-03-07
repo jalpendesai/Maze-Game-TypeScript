@@ -1,0 +1,12 @@
+#container {
+    width: 800px;
+    margin: auto;
+}
+#canvas {
+    width: 800px;
+    height: 600px;
+    border: 2px black solid;
+}
+#controls span{
+    display: block;
+}
