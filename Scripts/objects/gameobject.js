@@ -20,6 +20,7 @@ var objects;
         Action[Action["JUMPING"] = 2] = "JUMPING";
         Action[Action["CLIMBING"] = 3] = "CLIMBING";
         Action[Action["INTERACTING"] = 4] = "INTERACTING";
+        Action[Action["WALKINGy"] = 5] = "WALKINGy";
     })(Action = objects.Action || (objects.Action = {}));
     var Direction;
     (function (Direction) {

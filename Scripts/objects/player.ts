@@ -54,15 +54,15 @@ module objects {
             this.collider = new components.Collider(this, this.PivotX, this.PivotY, this.Width, this.Height);
             this.AddComponent(this.collider);
 
-            managers.GameManager.CameraManager.Follow(this);
-            this._healthBar = new controls.ProgressBar(managers.GameManager.SceneManager.ScreenWidth - 174, 24, 150, 20, this._hp.Value, "black", "red", 2, "#D3D3D3");
-            this._healthBar.Value = 100;
+            // managers.GameManager.CameraManager.Follow(this);
+            // this._healthBar = new controls.ProgressBar(managers.GameManager.SceneManager.ScreenWidth - 174, 24, 150, 20, this._hp.Value, "black", "red", 2, "#D3D3D3");
+            // this._healthBar.Value = 100;
 
-            this._shieldBar = new controls.ProgressBar(managers.GameManager.SceneManager.ScreenWidth - 174, 54, 150, 20, this._shield.Value, "black", "cyan", 2, "#D3D3D3");
-            this._shieldBar.Value = this._shield.Value;
+            // this._shieldBar = new controls.ProgressBar(managers.GameManager.SceneManager.ScreenWidth - 174, 54, 150, 20, this._shield.Value, "black", "cyan", 2, "#D3D3D3");
+            // this._shieldBar.Value = this._shield.Value;
 
-            managers.GameManager.CurrentLevel.AddInGameGUIControl(this._healthBar);
-            managers.GameManager.CurrentLevel.AddInGameGUIControl(this._shieldBar);
+            // managers.GameManager.CurrentLevel.AddInGameGUIControl(this._healthBar);
+            // managers.GameManager.CurrentLevel.AddInGameGUIControl(this._shieldBar);
         }
 
         public Init(): void {
@@ -70,14 +70,15 @@ module objects {
         }
 
         public UpdateTransform(): void {
+            
             this.checkMovementInput();
             this.checkJumpInput();
 
             // Testing
-            if (managers.InputManager.KeyUp(config.Key.G)) {
-                this._hp.Reduce(10);
-                this._healthBar.Value = this._hp.Value;
-            }
+            // if (managers.InputManager.KeyUp(config.Key.G)) {
+            //     this._hp.Reduce(10);
+            //     this._healthBar.Value = this._hp.Value;
+            // }
             //this.x = managers.GameManager.SceneManager.CurrentStage.mouseX;
             //this.y = managers.GameManager.SceneManager.CurrentStage.mouseY;
         }
@@ -108,7 +109,7 @@ module objects {
         }
 
         private checkMovementInput() {
-            // If not clamping then player can move left or right
+            // If not climbing then player can move left or right
             if (this._action != Action.CLIMBING) {
                 if (managers.InputManager.KeyDown(config.Key.LEFT)) {
                     this._action = Action.WALKING;
@@ -117,6 +118,15 @@ module objects {
                 else if (managers.InputManager.KeyDown(config.Key.RIGHT)) {
                     this._action = Action.WALKING;
                     this._direction = Direction.RIGHT;
+                }
+                else if (managers.InputManager.KeyDown(config.Key.UP)){
+                    this._action = Action.WALKINGy;
+                    // this._rb2d.GravityScale = 0;
+                    this.y -= this._movementSpeed;
+                }
+                else if (managers.InputManager.KeyDown(config.Key.DOWN)){
+                    this._action = Action.WALKINGy;
+                    this.y += this._movementSpeed;
                 }
                 else {
                     if (this._action == Action.WALKING) {
@@ -128,10 +138,13 @@ module objects {
             if (this._action == Action.WALKING) {
                 this.x += this._movementSpeed * this._direction;
             }
+
         }
 
         private checkJumpInput() {
             if (managers.InputManager.KeyUp(config.Key.SPACE) && this._action != Action.JUMPING) {
+
+                
                 this._action = Action.JUMPING;
                 createjs.Tween.get(this).to({ y: this.y - this._jumpForce }, 300).call(this.onFinishJump);
                 //createjs.Sound.play("sfxHit");
@@ -175,14 +188,18 @@ module objects {
         public OnCollisionEnter(other: objects.GameObject) {
 
             if (this._action != Action.CLIMBING) {
-                if (other.name === "platform") {
-                    this.y = other.Collider.Top + this.regY / 2;
-                }
+                // if (other.name === "platform") {
+                //     this.y = other.Collider.Top + this.regY / 2;
+                // }
             }
             else {
                 if (utils.Util.NotNullOrUndefined(this._lastPlatform) && this._lastPlatform == other) {
                     this._action = Action.STANDING;
                 }
+            }
+            if (other.name === "platform") {
+                // this.y = other.Collider.Top + this.regY / 2;
+                // console.log("Collided");
             }
 
             if (other.name === "ladder") {

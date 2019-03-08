@@ -3,7 +3,7 @@ var physics;
     var Config = /** @class */ (function () {
         function Config() {
         }
-        Config.GRAVITY = 9.8;
+        Config.GRAVITY = 0;
         return Config;
     }());
     physics.Config = Config;

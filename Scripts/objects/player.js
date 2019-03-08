@@ -49,14 +49,14 @@ var objects;
             // Add Collider
             _this.collider = new components.Collider(_this, _this.PivotX, _this.PivotY, _this.Width, _this.Height);
             _this.AddComponent(_this.collider);
-            managers.GameManager.CameraManager.Follow(_this);
-            _this._healthBar = new controls.ProgressBar(managers.GameManager.SceneManager.ScreenWidth - 174, 24, 150, 20, _this._hp.Value, "black", "red", 2, "#D3D3D3");
-            _this._healthBar.Value = 100;
-            _this._shieldBar = new controls.ProgressBar(managers.GameManager.SceneManager.ScreenWidth - 174, 54, 150, 20, _this._shield.Value, "black", "cyan", 2, "#D3D3D3");
-            _this._shieldBar.Value = _this._shield.Value;
-            managers.GameManager.CurrentLevel.AddInGameGUIControl(_this._healthBar);
-            managers.GameManager.CurrentLevel.AddInGameGUIControl(_this._shieldBar);
             return _this;
+            // managers.GameManager.CameraManager.Follow(this);
+            // this._healthBar = new controls.ProgressBar(managers.GameManager.SceneManager.ScreenWidth - 174, 24, 150, 20, this._hp.Value, "black", "red", 2, "#D3D3D3");
+            // this._healthBar.Value = 100;
+            // this._shieldBar = new controls.ProgressBar(managers.GameManager.SceneManager.ScreenWidth - 174, 54, 150, 20, this._shield.Value, "black", "cyan", 2, "#D3D3D3");
+            // this._shieldBar.Value = this._shield.Value;
+            // managers.GameManager.CurrentLevel.AddInGameGUIControl(this._healthBar);
+            // managers.GameManager.CurrentLevel.AddInGameGUIControl(this._shieldBar);
         }
         Player.prototype.Init = function () {
             this.SetPivotPoint(this.Width / 2, this.Height);
@@ -65,10 +65,10 @@ var objects;
             this.checkMovementInput();
             this.checkJumpInput();
             // Testing
-            if (managers.InputManager.KeyUp(config.Key.G)) {
-                this._hp.Reduce(10);
-                this._healthBar.Value = this._hp.Value;
-            }
+            // if (managers.InputManager.KeyUp(config.Key.G)) {
+            //     this._hp.Reduce(10);
+            //     this._healthBar.Value = this._hp.Value;
+            // }
             //this.x = managers.GameManager.SceneManager.CurrentStage.mouseX;
             //this.y = managers.GameManager.SceneManager.CurrentStage.mouseY;
         };
@@ -97,7 +97,7 @@ var objects;
             }
         };
         Player.prototype.checkMovementInput = function () {
-            // If not clamping then player can move left or right
+            // If not climbing then player can move left or right
             if (this._action != objects.Action.CLIMBING) {
                 if (managers.InputManager.KeyDown(config.Key.LEFT)) {
                     this._action = objects.Action.WALKING;
@@ -106,6 +106,15 @@ var objects;
                 else if (managers.InputManager.KeyDown(config.Key.RIGHT)) {
                     this._action = objects.Action.WALKING;
                     this._direction = objects.Direction.RIGHT;
+                }
+                else if (managers.InputManager.KeyDown(config.Key.UP)) {
+                    this._action = objects.Action.WALKINGy;
+                    // this._rb2d.GravityScale = 0;
+                    this.y -= this._movementSpeed;
+                }
+                else if (managers.InputManager.KeyDown(config.Key.DOWN)) {
+                    this._action = objects.Action.WALKINGy;
+                    this.y += this._movementSpeed;
                 }
                 else {
                     if (this._action == objects.Action.WALKING) {
@@ -157,14 +166,18 @@ var objects;
         };
         Player.prototype.OnCollisionEnter = function (other) {
             if (this._action != objects.Action.CLIMBING) {
-                if (other.name === "platform") {
-                    this.y = other.Collider.Top + this.regY / 2;
-                }
+                // if (other.name === "platform") {
+                //     this.y = other.Collider.Top + this.regY / 2;
+                // }
             }
             else {
                 if (utils.Util.NotNullOrUndefined(this._lastPlatform) && this._lastPlatform == other) {
                     this._action = objects.Action.STANDING;
                 }
+            }
+            if (other.name === "platform") {
+                // this.y = other.Collider.Top + this.regY / 2;
+                // console.log("Collided");
             }
             if (other.name === "ladder") {
                 if (managers.InputManager.KeyDown(config.Key.UP)) {

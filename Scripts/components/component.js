@@ -48,7 +48,7 @@ var components;
             var _this = _super.call(this, owner) || this;
             _this.name = "Rigidbody2D";
             _this._velocity = new math.Vector2(0, 0);
-            _this._gravityScale = 1;
+            _this._gravityScale = 0;
             return _this;
         }
         Object.defineProperty(Rigidbody2D.prototype, "Velocity", {
@@ -74,7 +74,7 @@ var components;
         Rigidbody2D.prototype.Update = function () {
             this.owner.x += this._velocity.x;
             this.owner.y -= this._velocity.y;
-            this.owner.y += this._gravityScale * physics.Config.GRAVITY;
+            this.owner.y -= this._gravityScale * physics.Config.GRAVITY;
         };
         return Rigidbody2D;
     }(components.Component));

@@ -1,10 +1,11 @@
 module objects {
     export enum Action{
-        STANDING, WALKING, JUMPING, CLIMBING, INTERACTING
+        STANDING, WALKING, JUMPING, CLIMBING, INTERACTING, WALKINGy
     }
     export enum Direction{
         LEFT = -1, RIGHT = 1
     }
+
     export abstract class GameObject extends createjs.Container {
 
         private _transform: components.Transform;

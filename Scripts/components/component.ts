@@ -37,7 +37,7 @@ module components {
             super(owner);
             this.name = "Rigidbody2D";
             this._velocity = new math.Vector2(0, 0);
-            this._gravityScale = 1;
+            this._gravityScale = 0;
         }
 
         get Velocity(): math.Vector2 {
@@ -59,7 +59,7 @@ module components {
         public Update(): void {
             this.owner.x += this._velocity.x;
             this.owner.y -= this._velocity.y;
-            this.owner.y += this._gravityScale * physics.Config.GRAVITY;
+            this.owner.y -= this._gravityScale * physics.Config.GRAVITY;
         }
     }
 
