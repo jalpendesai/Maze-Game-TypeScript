@@ -20,8 +20,8 @@ module managers {
             { id: "sprite_ladder", src: "./Assets/sprites/environment/ladder.png" },
 
             // Level Backgrounds
-            // { id: "level1", src: "./Assets/sprites/environment/level1.png" },
-            { id: "level1", src: "./Assets/sprites/environment/background-tile.png" },
+            { id: "level1", src: "./Assets/sprites/environment/level1.png" },
+            // { id: "level1", src: "./Assets/sprites/environment/background-tile.png" },
             { id: "level2", src: "./Assets/sprites/environment/level2.png" },
             { id: "level3", src: "./Assets/sprites/environment/level3.png" },
 

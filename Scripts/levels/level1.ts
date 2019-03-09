@@ -4,7 +4,7 @@ module levels {
         private _backgroundMusic : createjs.AbstractSoundInstance;
 
         public Init(): void {
-            this.SetLevelSize(1920, 1080);
+            this.SetLevelSize(1550, 1150);
             this.SetLevelBoundarySize(1);
 
             // Trap

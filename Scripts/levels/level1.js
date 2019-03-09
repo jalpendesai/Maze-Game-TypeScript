@@ -19,7 +19,7 @@ var levels;
             return _super.call(this, "Floor 1", bg) || this;
         }
         Level1.prototype.Init = function () {
-            this.SetLevelSize(1920, 1080);
+            this.SetLevelSize(1550, 1150);
             this.SetLevelBoundarySize(1);
             // Trap
             // for (let i = 0; i < this._numberOfObstacles; i++) {
