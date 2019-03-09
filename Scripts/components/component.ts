@@ -181,7 +181,7 @@ module components {
             this._width = width;
             this._height = height;
             this._border = new createjs.Shape();
-            this._border.graphics.setStrokeStyle(1).beginStroke("#00FF7F").drawRect(-this._offsetX, -this._offsetY, width, height).endStroke();
+            this._border.graphics.setStrokeStyle(1).beginStroke("#00FF7F").drawRect(-this._offsetX, this._offsetY, width, height).endStroke();
             
             this.owner.addChild(this._border);
 

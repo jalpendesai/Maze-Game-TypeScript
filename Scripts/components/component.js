@@ -158,7 +158,7 @@ var components;
             _this._width = width;
             _this._height = height;
             _this._border = new createjs.Shape();
-            _this._border.graphics.setStrokeStyle(1).beginStroke("#00FF7F").drawRect(-_this._offsetX, -_this._offsetY, width, height).endStroke();
+            _this._border.graphics.setStrokeStyle(1).beginStroke("#00FF7F").drawRect(-_this._offsetX, _this._offsetY, width, height).endStroke();
             _this.owner.addChild(_this._border);
             console.log("Collider Info:");
             console.log(_this);

@@ -10,8 +10,8 @@ module objects {
         private _shield: components.HealthComponent;
 
         // GUI Controls
-        private _healthBar: controls.ProgressBar;
-        private _shieldBar: controls.ProgressBar;
+        // private _healthBar: controls.ProgressBar;
+        // private _shieldBar: controls.ProgressBar;
 
         private _isPlayingAnimation: boolean;
 
@@ -66,11 +66,11 @@ module objects {
         }
 
         public Init(): void {
-            this.SetPivotPoint(this.Width / 2, this.Height);
+            this.SetPivotPoint(this.Width /2, 1);
         }
 
         public UpdateTransform(): void {
-            
+
             this.checkMovementInput();
             this.checkJumpInput();
 
@@ -119,12 +119,12 @@ module objects {
                     this._action = Action.WALKING;
                     this._direction = Direction.RIGHT;
                 }
-                else if (managers.InputManager.KeyDown(config.Key.UP)){
+                else if (managers.InputManager.KeyDown(config.Key.UP)) {
                     this._action = Action.WALKINGy;
                     // this._rb2d.GravityScale = 0;
                     this.y -= this._movementSpeed;
                 }
-                else if (managers.InputManager.KeyDown(config.Key.DOWN)){
+                else if (managers.InputManager.KeyDown(config.Key.DOWN)) {
                     this._action = Action.WALKINGy;
                     this.y += this._movementSpeed;
                 }
@@ -144,13 +144,14 @@ module objects {
         private checkJumpInput() {
             if (managers.InputManager.KeyUp(config.Key.SPACE) && this._action != Action.JUMPING) {
 
-                
+
                 this._action = Action.JUMPING;
                 createjs.Tween.get(this).to({ y: this.y - this._jumpForce }, 300).call(this.onFinishJump);
                 //createjs.Sound.play("sfxHit");
             }
             if (managers.InputManager.KeyDown(config.Key.F)) {
-                this.y -= this._jumpForce;
+                // this.y -= this._jumpForce;
+                console.log("Current X= ",this.x);
             }
             if (managers.InputManager.KeyDown(config.Key.V)) {
                 this.y += this._jumpForce;
@@ -198,8 +199,35 @@ module objects {
                 }
             }
             if (other.name === "platform") {
+                let level = managers.GameManager.CurrentLevel;
+
                 // this.y = other.Collider.Top + this.regY / 2;
-                // console.log("Collided");
+                let rightCollider = level.LevelWidth - this.PivotX - other.x;
+                let leftCollider = other.Collider.Right - other.Width - this.PivotX;
+                let bottomCollider = other.Collider.Bottom + this.regY + this.PivotY + this.Width;
+                let topCollider = other.Collider.Top + this.PivotY;
+
+                let rightCheck = level.LevelWidth - this.x;
+                if (rightCheck < rightCollider) {
+                    console.log("x = ", rightCheck);
+                    console.log("rightCollider = ", rightCollider);
+                    // this.x = rightCollider - rightCheck + other.Width + other.Width;
+                    this.x = other.Collider.Right + this.PivotX + this.Width;
+                    console.log("New X= ",this.x);
+                }
+                if (this.x > leftCollider) {
+                    // console.log("x= ",this.x);
+                    // console.log("LeftCollider= ", leftCollider);
+                    this.x = leftCollider;
+                }
+
+                if(this.y < topCollider){
+                    this.y = topCollider;
+                }
+
+                // if(this.y < bottomCollider){
+                //     this.y = bottomCollider;
+                // }
             }
 
             if (other.name === "ladder") {

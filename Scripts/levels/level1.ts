@@ -21,15 +21,16 @@ module levels {
             */ 
 
             
-            // Platform
-            this.AddGameObject(new objects.Platform(0, 80, managers.GameManager.CurrentLevel.LevelWidth - 1, 23));
-            this.AddGameObject(new objects.Platform(0, 336, 1770, 23));
+            // PlatformB
+            // this.AddGameObject(new objects.Platform(0, 80, managers.GameManager.CurrentLevel.LevelWidth - 1, 23));
+            this.AddGameObject(new objects.Platform(250, 200, 200, 50));
+            this.AddGameObject(new objects.Platform(50, 336, 60, 50));
             this.AddGameObject(new objects.Platform(0, 540, managers.GameManager.CurrentLevel.LevelWidth - 1, 23));
             this.AddGameObject(new objects.Platform(0, 767, 880, 23));
             this.AddGameObject(new objects.Platform(1020, 767, 900, 23));
 
             // Ladder
-            this.AddGameObject(new objects.Ladder(54, 75, 69, 260));
+            // this.AddGameObject(new objects.Ladder(54, 75, 69, 260));
             this.AddGameObject(new objects.Ladder(90, 537, 66, 229));
             this.AddGameObject(new objects.Ladder(1700, 334, 64, 207));
         }

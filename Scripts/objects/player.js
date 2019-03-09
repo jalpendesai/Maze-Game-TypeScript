@@ -59,7 +59,7 @@ var objects;
             // managers.GameManager.CurrentLevel.AddInGameGUIControl(this._shieldBar);
         }
         Player.prototype.Init = function () {
-            this.SetPivotPoint(this.Width / 2, this.Height);
+            this.SetPivotPoint(this.Width / 2, 1);
         };
         Player.prototype.UpdateTransform = function () {
             this.checkMovementInput();
@@ -133,7 +133,8 @@ var objects;
                 //createjs.Sound.play("sfxHit");
             }
             if (managers.InputManager.KeyDown(config.Key.F)) {
-                this.y -= this._jumpForce;
+                // this.y -= this._jumpForce;
+                console.log("Current X= ", this.x);
             }
             if (managers.InputManager.KeyDown(config.Key.V)) {
                 this.y += this._jumpForce;
@@ -176,8 +177,31 @@ var objects;
                 }
             }
             if (other.name === "platform") {
+                var level = managers.GameManager.CurrentLevel;
                 // this.y = other.Collider.Top + this.regY / 2;
-                // console.log("Collided");
+                var rightCollider = level.LevelWidth - this.PivotX - other.x;
+                var leftCollider = other.Collider.Right - other.Width - this.PivotX;
+                var bottomCollider = other.Collider.Bottom + this.regY + this.PivotY + this.Width;
+                var topCollider = other.Collider.Top + this.PivotY;
+                var rightCheck = level.LevelWidth - this.x;
+                if (rightCheck < rightCollider) {
+                    console.log("x = ", rightCheck);
+                    console.log("rightCollider = ", rightCollider);
+                    // this.x = rightCollider - rightCheck + other.Width + other.Width;
+                    this.x = other.Collider.Right + this.PivotX + this.Width;
+                    console.log("New X= ", this.x);
+                }
+                if (this.x > leftCollider) {
+                    // console.log("x= ",this.x);
+                    // console.log("LeftCollider= ", leftCollider);
+                    this.x = leftCollider;
+                }
+                if (this.y < topCollider) {
+                    this.y = topCollider;
+                }
+                // if(this.y < bottomCollider){
+                //     this.y = bottomCollider;
+                // }
             }
             if (other.name === "ladder") {
                 if (managers.InputManager.KeyDown(config.Key.UP)) {
