@@ -122,6 +122,11 @@ var objects;
                     }
                 }
             }
+            if (managers.InputManager.KeyDown(config.Key.F)) {
+                // this.y -= this._jumpForce;
+                console.log("Current X= ", this.x);
+                console.log("Current Y= ", this.y);
+            }
             if (this._action == objects.Action.WALKING) {
                 this.x += this._movementSpeed * this._direction;
             }
@@ -132,10 +137,11 @@ var objects;
                 createjs.Tween.get(this).to({ y: this.y - this._jumpForce }, 300).call(this.onFinishJump);
                 //createjs.Sound.play("sfxHit");
             }
-            if (managers.InputManager.KeyDown(config.Key.F)) {
-                // this.y -= this._jumpForce;
-                console.log("Current X= ", this.x);
-            }
+            // if (managers.InputManager.KeyDown(config.Key.F)) {
+            //     // this.y -= this._jumpForce;
+            //     console.log("Current X= ",this.x);
+            //     console.log("Current Y= ",this.y);
+            // }
             if (managers.InputManager.KeyDown(config.Key.V)) {
                 this.y += this._jumpForce;
             }
@@ -177,31 +183,19 @@ var objects;
                 }
             }
             if (other.name === "platform") {
-                var level = managers.GameManager.CurrentLevel;
-                // this.y = other.Collider.Top + this.regY / 2;
-                var rightCollider = level.LevelWidth - this.PivotX - other.x;
-                var leftCollider = other.Collider.Right - other.Width - this.PivotX;
-                var bottomCollider = other.Collider.Bottom + this.regY + this.PivotY + this.Width;
-                var topCollider = other.Collider.Top + this.PivotY;
-                var rightCheck = level.LevelWidth - this.x;
-                if (rightCheck < rightCollider) {
-                    console.log("x = ", rightCheck);
-                    console.log("rightCollider = ", rightCollider);
-                    // this.x = rightCollider - rightCheck + other.Width + other.Width;
-                    this.x = other.Collider.Right + this.PivotX + this.Width;
-                    console.log("New X= ", this.x);
+                if ((this.x > other.Collider.Right) && ((this.x && this.y) != other.Collider.Top && (this.x && this.y) != other.Collider.Bottom)) {
+                    this.x = other.Collider.Right + this.PivotX;
                 }
-                if (this.x > leftCollider) {
-                    // console.log("x= ",this.x);
-                    // console.log("LeftCollider= ", leftCollider);
-                    this.x = leftCollider;
+                else if ((this.x < other.Collider.Left) && ((this.x && this.y) != other.Collider.Top && (this.x && this.y) != other.Collider.Bottom)) {
+                    this.x = other.Collider.Left - this.PivotX - (this.Collider.Width);
                 }
-                if (this.y < topCollider) {
-                    this.y = topCollider;
+                else if ((this.y > other.Collider.Top) && ((this.x && this.y) != other.Collider.Left && (this.x && this.y) != other.Collider.Bottom) && (this.x && this.y) != other.Collider.Right) {
+                    this.y = other.Collider.Top - this.PivotY;
                 }
-                // if(this.y < bottomCollider){
-                //     this.y = bottomCollider;
-                // }
+                else if ((this.y < other.Collider.Bottom) && ((this.x && this.y) != other.Collider.Left && (this.x && this.y) != other.Collider.Right && (this.x && this.y) != other.Collider.Top)
+                    && (this.x > other.Collider.Left || this.x < other.Collider.Right)) {
+                    this.y = other.Collider.Bottom + this.PivotY;
+                }
             }
             if (other.name === "ladder") {
                 if (managers.InputManager.KeyDown(config.Key.UP)) {
