@@ -193,11 +193,11 @@ var objects;
                     console.log("Top Collider");
                     this.y = other.Collider.Top - this.Collider.Height;
                 }
-                // else if ((this.y < other.Collider.Bottom) && ((this.x && this.y) != other.Collider.Left && (this.x && this.y) != other.Collider.Right && (this.x && this.y) != other.Collider.Top)
-                // && (this.x > other.Collider.Left || this.x < other.Collider.Right)) {
-                //     console.log("Bottom Collider");
-                //     this.y = other.Collider.Bottom  - this.PivotY;
-                // }
+                else if ((this.y < other.Collider.Bottom) && ((this.x && this.y) != other.Collider.Left && (this.x && this.y) != other.Collider.Right && (this.x && this.y) != other.Collider.Top)
+                    && (this.x > other.Collider.Left || this.x < other.Collider.Right)) {
+                    console.log("Bottom Collider");
+                    this.y = other.Collider.Bottom + this.PivotY;
+                }
             }
             if (other.name === "ladder") {
                 // if (managers.InputManager.KeyDown(config.Key.UP)) {
