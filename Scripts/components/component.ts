@@ -164,7 +164,7 @@ module components {
         }
 
         get Left(): number {
-            return this.owner.x - this._offsetX;
+            return this.owner.x - this._offsetX ;
         }
 
         get Right(): number {

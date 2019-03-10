@@ -184,9 +184,11 @@ var objects;
             }
             if (other.name === "platform") {
                 if ((this.x > other.Collider.Right) && ((this.x && this.y) != other.Collider.Top && (this.x && this.y) != other.Collider.Bottom)) {
+                    console.log("Right Collider");
                     this.x = other.Collider.Right + this.PivotX;
                 }
                 else if ((this.x < other.Collider.Left) && ((this.x && this.y) != other.Collider.Top && (this.x && this.y) != other.Collider.Bottom)) {
+                    console.log("Left Collider");
                     this.x = other.Collider.Left - this.PivotX - (this.Collider.Width);
                 }
                 else if ((this.y < other.Collider.Top) && ((this.x && this.y) != other.Collider.Left && (this.x && this.y) != other.Collider.Bottom) && (this.x && this.y) != other.Collider.Right) {
