@@ -189,28 +189,31 @@ var objects;
                 else if ((this.x < other.Collider.Left) && ((this.x && this.y) != other.Collider.Top && (this.x && this.y) != other.Collider.Bottom)) {
                     this.x = other.Collider.Left - this.PivotX - (this.Collider.Width);
                 }
-                else if ((this.y > other.Collider.Top) && ((this.x && this.y) != other.Collider.Left && (this.x && this.y) != other.Collider.Bottom) && (this.x && this.y) != other.Collider.Right) {
-                    this.y = other.Collider.Top - this.PivotY;
+                else if ((this.y < other.Collider.Top) && ((this.x && this.y) != other.Collider.Left && (this.x && this.y) != other.Collider.Bottom) && (this.x && this.y) != other.Collider.Right) {
+                    console.log("Top Collider");
+                    this.y = other.Collider.Top - this.Collider.Height;
                 }
-                else if ((this.y < other.Collider.Bottom) && ((this.x && this.y) != other.Collider.Left && (this.x && this.y) != other.Collider.Right && (this.x && this.y) != other.Collider.Top)
-                    && (this.x > other.Collider.Left || this.x < other.Collider.Right)) {
-                    this.y = other.Collider.Bottom + this.PivotY;
-                }
+                // else if ((this.y < other.Collider.Bottom) && ((this.x && this.y) != other.Collider.Left && (this.x && this.y) != other.Collider.Right && (this.x && this.y) != other.Collider.Top)
+                // && (this.x > other.Collider.Left || this.x < other.Collider.Right)) {
+                //     console.log("Bottom Collider");
+                //     this.y = other.Collider.Bottom  - this.PivotY;
+                // }
             }
             if (other.name === "ladder") {
-                if (managers.InputManager.KeyDown(config.Key.UP)) {
-                    this._lastLadder = other;
-                    this.y -= this._movementSpeed;
-                    this._rb2d.GravityScale = 0;
-                    this._action = objects.Action.CLIMBING;
-                    this.Sprite.gotoAndPlay("climbing");
-                }
-                else if (managers.InputManager.KeyDown(config.Key.DOWN)) {
-                    this._lastPlatform = other;
-                    this._action = objects.Action.CLIMBING;
-                    this.Sprite.gotoAndPlay("climbing");
-                    this.y += this._movementSpeed;
-                }
+                // if (managers.InputManager.KeyDown(config.Key.UP)) {
+                //     this._lastLadder = other;
+                //     this.y -= this._movementSpeed;
+                //     this._rb2d.GravityScale = 0;
+                //     this._action = Action.CLIMBING;
+                //     this.Sprite.gotoAndPlay("climbing");
+                // }
+                // else if (managers.InputManager.KeyDown(config.Key.DOWN)) {
+                //     this._lastPlatform = other;
+                //     this._action = Action.CLIMBING;
+                //     this.Sprite.gotoAndPlay("climbing");
+                //     this.y += this._movementSpeed;
+                // }
+                // let go = levels.Level1.OnLevelCompleted();
             }
         };
         Player.prototype.OnCollisionExit = function (other) {

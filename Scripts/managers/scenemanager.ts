@@ -92,7 +92,7 @@ module managers {
             }
         }
 
-        private _createNewScene(type: config.Scene): scenes.Scene {
+        public _createNewScene(type: config.Scene): scenes.Scene {
             let result: scenes.Scene;
             switch (type) {
                 case config.Scene.Menu:

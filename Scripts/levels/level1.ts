@@ -53,7 +53,8 @@ module levels {
         }
 
         public OnLevelCompleted(): void {
-            managers.GameManager.SceneManager.LoadLevel(2);
+            // managers.GameManager.SceneManager.LoadLevel(2);
+            managers.GameManager.SceneManager._createNewScene(config.Scene.GameOver);
         }
     }
 }

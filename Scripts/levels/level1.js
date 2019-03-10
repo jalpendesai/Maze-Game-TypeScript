@@ -53,7 +53,8 @@ var levels;
         Level1.prototype.OnSceneExit = function () {
         };
         Level1.prototype.OnLevelCompleted = function () {
-            managers.GameManager.SceneManager.LoadLevel(2);
+            // managers.GameManager.SceneManager.LoadLevel(2);
+            managers.GameManager.SceneManager._createNewScene(config.Scene.GameOver);
         };
         return Level1;
     }(scenes.Play));
