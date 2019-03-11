@@ -1,7 +1,11 @@
 module levels {
     export class Level1 extends scenes.Play {
 
+        public _music : scenes.Menu;
+
         private _backgroundMusic : createjs.AbstractSoundInstance;
+
+    
 
         public Init(): void {
             this.SetLevelSize(1550, 1150);
@@ -17,11 +21,15 @@ module levels {
             // }
 
             
-            /* Background Music
-            this._backgroundMusic = createjs.Sound.play("bgmFloor1");
-            this._backgroundMusic.loop = -1; // looping forever
-            this._backgroundMusic.volume = 0.3;
-            */ 
+            // Background Music
+            // if(this._music.MusicMuted){
+
+                this._backgroundMusic = createjs.Sound.play("bgmFloor1");
+                this._backgroundMusic.loop = -1; // looping forever
+                this._backgroundMusic.volume = 0.3;
+            // }
+            
+            
 
             
             // PlatformB
@@ -108,9 +116,9 @@ module levels {
             // this.AddGameObject(new objects.Platform(1020, 767, 900, 23));
 
             // Ladder
-            // this.AddGameObject(new objects.Ladder(54, 75, 69, 260));
-            this.AddGameObject(new objects.Ladder(90, 537, 66, 229));
-            this.AddGameObject(new objects.Ladder(1700, 334, 64, 207));
+            //  Game Winning
+            this.AddGameObject(new objects.Ladder(247, 0, 135, 90));
+            // this.AddGameObject(new objects.Ladder(1700, 334, 64, 207));
         }
 
         constructor(bg: createjs.Bitmap) {
@@ -127,7 +135,9 @@ module levels {
         }
 
         public OnSceneExit(): void {
-
+            // if(this._music.MusicMuted){
+                this._backgroundMusic.stop();
+            // }
         }
 
         public OnLevelCompleted(): void {

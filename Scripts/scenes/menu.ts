@@ -8,6 +8,15 @@ module scenes {
 
         private _musicMuted: boolean = false;
 
+        get MusicMuted():boolean{
+            return this._musicMuted;
+        }
+
+        set MusicMuted(player: boolean){
+            this._musicMuted = player;
+        }
+
+
         constructor(bgm: createjs.Bitmap) {
             super(config.Scene.Menu, bgm);
             this.Init();
@@ -56,7 +65,7 @@ module scenes {
         }
         
         private _onMuteClicked(): void {
-            if (this._musicMuted) {
+            if (this.MusicMuted) {
                 this._btnMute = new controls.Button(<createjs.Bitmap>managers.GameManager.AssetManager.getResult("btnUnmute"), managers.GameManager.SceneManager.ScreenWidth - 40, managers.GameManager.SceneManager.ScreenHeight - 40, true);
                 this._btnMute.SetBackgroundImage(<createjs.Bitmap>managers.GameManager.AssetManager.getResult("btnUnmute"));
             }
@@ -68,7 +77,7 @@ module scenes {
               this.stage.addChild(this._btnMute);
               this.stage.update();
             }
-            this._musicMuted = !this._musicMuted;
+            this.MusicMuted = !this.MusicMuted;
         }
         //#endregion
     }

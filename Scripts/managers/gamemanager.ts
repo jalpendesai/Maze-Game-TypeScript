@@ -27,7 +27,7 @@ module managers {
 
             // Audio
             // Background Music
-            //  { id: "bgmFloor1", src: "./Assets/audio/bgmFloor1.wav" },
+             { id: "bgmFloor1", src: "./Assets/audio/bgm.m4a" },
             // SFX
             //   { id: "sfxHit", src: "./Assets/audio/sfxHit.wav"}
         ];

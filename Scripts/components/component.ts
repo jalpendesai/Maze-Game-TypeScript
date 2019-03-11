@@ -199,7 +199,7 @@ module components {
         }
 
         public ShowCollision(b : boolean){
-            this._border.graphics.setStrokeStyle(1).beginStroke(b ? "#FF0000" : "#00FF7F").drawRect(-this._offsetX, -this._offsetY, this._width, this._height).endStroke();
+            // this._border.graphics.setStrokeStyle(1).beginStroke(b ? "#FF0000" : "#00FF7F").drawRect(-this._offsetX, -this._offsetY, this._width, this._height).endStroke();
         }
 
         public Update(): void {

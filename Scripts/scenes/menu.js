@@ -21,6 +21,16 @@ var scenes;
             _this.Init();
             return _this;
         }
+        Object.defineProperty(Menu.prototype, "MusicMuted", {
+            get: function () {
+                return this._musicMuted;
+            },
+            set: function (player) {
+                this._musicMuted = player;
+            },
+            enumerable: true,
+            configurable: true
+        });
         Menu.prototype.OnSceneEnter = function () {
             console.log("Menu Scene Enter");
             this.Init();
@@ -57,7 +67,7 @@ var scenes;
             managers.GameManager.SceneManager.LoadLevel(1);
         };
         Menu.prototype._onMuteClicked = function () {
-            if (this._musicMuted) {
+            if (this.MusicMuted) {
                 this._btnMute = new controls.Button(managers.GameManager.AssetManager.getResult("btnUnmute"), managers.GameManager.SceneManager.ScreenWidth - 40, managers.GameManager.SceneManager.ScreenHeight - 40, true);
                 this._btnMute.SetBackgroundImage(managers.GameManager.AssetManager.getResult("btnUnmute"));
             }
@@ -68,7 +78,7 @@ var scenes;
                 this.stage.addChild(this._btnMute);
                 this.stage.update();
             }
-            this._musicMuted = !this._musicMuted;
+            this.MusicMuted = !this.MusicMuted;
         };
         return Menu;
     }(scenes.Scene));

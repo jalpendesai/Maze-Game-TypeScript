@@ -20,6 +20,9 @@ var managers;
             // { id: "level1", src: "./Assets/sprites/environment/background-tile.png" },
             { id: "level2", src: "./Assets/sprites/environment/level2.png" },
             { id: "level3", src: "./Assets/sprites/environment/level3.png" },
+            // Audio
+            // Background Music
+            { id: "bgmFloor1", src: "./Assets/audio/bgm.m4a" },
         ];
         return GameManager;
     }());

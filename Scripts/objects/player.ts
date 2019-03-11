@@ -25,7 +25,7 @@ module objects {
         private _direction: objects.Direction;
 
         constructor() {
-            super(0, 700, 32, 32, {
+            super(1450, 1100, 32, 32, {
                 framerate: 1,
                 images: [managers.GameManager.AssetManager.getResult("spritesheet_player")],
                 frames: { width: 32, height: 32 },
@@ -224,7 +224,7 @@ module objects {
 
                 else if ((this.x < other.Collider.Left) && ((this.x && this.y) != other.Collider.Top && (this.x && this.y) != other.Collider.Bottom)) {
                     console.log("Left Collider");
-                    this.x = other.Collider.Left - this.PivotX - (this.Collider.Width) - 50;
+                    this.x = other.Collider.Left - this.PivotX - (this.Collider.Width);
                 }
 
                 else if ((this.y < other.Collider.Top) && ((this.x && this.y)!=other.Collider.Left && (this.x && this.y)!=other.Collider.Bottom) && (this.x && this.y)!=other.Collider.Right) {
@@ -237,7 +237,7 @@ module objects {
                     console.log("Bottom Collider");
                     this.y = other.Collider.Bottom  + this.PivotY;
                 }
-                this.ReloadScene();
+                // this.ReloadScene();
 
 
             }

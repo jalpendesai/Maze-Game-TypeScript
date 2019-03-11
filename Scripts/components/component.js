@@ -231,7 +231,7 @@ var components;
             this.owner.addChild(axisY);
         };
         Collider.prototype.ShowCollision = function (b) {
-            this._border.graphics.setStrokeStyle(1).beginStroke(b ? "#FF0000" : "#00FF7F").drawRect(-this._offsetX, -this._offsetY, this._width, this._height).endStroke();
+            // this._border.graphics.setStrokeStyle(1).beginStroke(b ? "#FF0000" : "#00FF7F").drawRect(-this._offsetX, -this._offsetY, this._width, this._height).endStroke();
         };
         Collider.prototype.Update = function () {
         };

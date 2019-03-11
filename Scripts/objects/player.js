@@ -16,7 +16,7 @@ var objects;
     var Player = /** @class */ (function (_super) {
         __extends(Player, _super);
         function Player() {
-            var _this = _super.call(this, 0, 700, 32, 32, {
+            var _this = _super.call(this, 1450, 1100, 32, 32, {
                 framerate: 1,
                 images: [managers.GameManager.AssetManager.getResult("spritesheet_player")],
                 frames: { width: 32, height: 32 },
@@ -195,7 +195,7 @@ var objects;
                 }
                 else if ((this.x < other.Collider.Left) && ((this.x && this.y) != other.Collider.Top && (this.x && this.y) != other.Collider.Bottom)) {
                     console.log("Left Collider");
-                    this.x = other.Collider.Left - this.PivotX - (this.Collider.Width) - 50;
+                    this.x = other.Collider.Left - this.PivotX - (this.Collider.Width);
                 }
                 else if ((this.y < other.Collider.Top) && ((this.x && this.y) != other.Collider.Left && (this.x && this.y) != other.Collider.Bottom) && (this.x && this.y) != other.Collider.Right) {
                     console.log("Top Collider");
@@ -206,7 +206,7 @@ var objects;
                     console.log("Bottom Collider");
                     this.y = other.Collider.Bottom + this.PivotY;
                 }
-                this.ReloadScene();
+                // this.ReloadScene();
             }
             if (other.name === "ladder") {
                 // if (managers.InputManager.KeyDown(config.Key.UP)) {
