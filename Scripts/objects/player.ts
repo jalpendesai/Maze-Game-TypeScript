@@ -24,24 +24,32 @@ module objects {
         private _action: objects.Action;
         private _direction: objects.Direction;
 
+        // constructor() {
+        //     super(1450, 1100, 32, 32, {
+        //         framerate: 1,
+        //         images: [managers.GameManager.AssetManager.getResult("spritesheet_player")],
+        //         frames: { width: 32, height: 32 },
+        //         animations: {
+        //             standRight: 15,
+        //             standLeft: 14,
+        //             runLeft: [16, 18, "runLeft", 0.5], // Frames, next, speed
+        //             runRight: [19, 21, "runRight", 0.5],
+        //             jumpLeft: [1, 6, "jumpLeft"],
+        //             jumpRight: [8, 13, "jumpRight"],
+        //             climbing: [22, 23]
+        //         }
+        //     });
+
         constructor() {
-            super(1450, 1100, 32, 32, {
-                framerate: 1,
-                images: [managers.GameManager.AssetManager.getResult("spritesheet_player")],
-                frames: { width: 32, height: 32 },
-                animations: {
-                    standRight: 15,
-                    standLeft: 14,
-                    runLeft: [16, 18, "runLeft", 0.5], // Frames, next, speed
-                    runRight: [19, 21, "runRight", 0.5],
-                    jumpLeft: [1, 6, "jumpLeft"],
-                    jumpRight: [8, 13, "jumpRight"],
-                    climbing: [22, 23]
-                }
-            });
+            super(1450, 1100, 32, 32,
+                {
+                    framerate: 1,
+                    images: [managers.GameManager.AssetManager.getResult("player")],
+                    frames: { width: 32, height: 32}
+                });
             this.name = "player";
-            this._direction = Direction.RIGHT;
-            this.playAndStopAnimation("stand");
+            this._direction = Direction.LEFT;
+            // this.playAndStopAnimation("stand");
             // Add Rigidbody to allow gravity
             this._rb2d = new components.Rigidbody2D(this);
             this.AddComponent(this._rb2d);
@@ -78,7 +86,7 @@ module objects {
         public UpdateTransform(): void {
 
             this.checkMovementInput();
-            this.checkJumpInput();
+            // this.checkJumpInput();
 
             // Testing
             // if (managers.InputManager.KeyUp(config.Key.G)) {
@@ -92,21 +100,21 @@ module objects {
         public OnAction(): void {
             switch (this._action) {
                 case Action.STANDING:
-                    this.playAndStopAnimation("stand");
+                    // this.playAndStopAnimation("stand");
                     break;
                 case Action.WALKING:
                     if (!this._isPlayingAnimation) {
-                        this.playAnimation("run");
+                        // this.playAnimation("run");
                     }
                     break;
                 case Action.JUMPING:
                     if (!this._isPlayingAnimation) {
-                        this.playAndStopAnimation("jump");
+                        // this.playAndStopAnimation("jump");
                     }
                     break;
                 case Action.CLIMBING:
                     if (!this._isPlayingAnimation) {
-                        this.playAnimation("climbing");
+                        // this.playAnimation("climbing");
                     }
                     break;
                 case Action.INTERACTING:
@@ -152,43 +160,43 @@ module objects {
 
         }
 
-        private checkJumpInput() {
-            if (managers.InputManager.KeyUp(config.Key.SPACE) && this._action != Action.JUMPING) {
+        // private checkJumpInput() {
+        //     if (managers.InputManager.KeyUp(config.Key.SPACE) && this._action != Action.JUMPING) {
 
 
-                this._action = Action.JUMPING;
-                createjs.Tween.get(this).to({ y: this.y - this._jumpForce }, 300).call(this.onFinishJump);
-                //createjs.Sound.play("sfxHit");
-            }
-            // if (managers.InputManager.KeyDown(config.Key.F)) {
-            //     // this.y -= this._jumpForce;
-            //     console.log("Current X= ",this.x);
-            //     console.log("Current Y= ",this.y);
-            // }
-            if (managers.InputManager.KeyDown(config.Key.V)) {
-                this.y += this._jumpForce;
-            }
-        }
+        //         this._action = Action.JUMPING;
+        //         createjs.Tween.get(this).to({ y: this.y - this._jumpForce }, 300).call(this.onFinishJump);
+        //         //createjs.Sound.play("sfxHit");
+        //     }
+        //     // if (managers.InputManager.KeyDown(config.Key.F)) {
+        //     //     // this.y -= this._jumpForce;
+        //     //     console.log("Current X= ",this.x);
+        //     //     console.log("Current Y= ",this.y);
+        //     // }
+        //     if (managers.InputManager.KeyDown(config.Key.V)) {
+        //         this.y += this._jumpForce;
+        //     }
+        // }
 
-        private playAnimation(animation: string) {
-            if (this._direction == Direction.RIGHT) {
-                this.Sprite.gotoAndPlay(animation + "Right");
-            }
-            else {
-                this.Sprite.gotoAndPlay(animation + "Left");
-            }
-            this._isPlayingAnimation = true;
-        }
+        // private playAnimation(animation: string) {
+        //     if (this._direction == Direction.RIGHT) {
+        //         this.Sprite.gotoAndPlay(animation + "Right");
+        //     }
+        //     else {
+        //         this.Sprite.gotoAndPlay(animation + "Left");
+        //     }
+        //     this._isPlayingAnimation = true;
+        // }
 
-        private playAndStopAnimation(animation: string) {
-            if (this._direction == Direction.RIGHT) {
-                this.Sprite.gotoAndStop(animation + "Right");
-            }
-            else {
-                this.Sprite.gotoAndStop(animation + "Left");
-            }
-            this._isPlayingAnimation = false;
-        }
+        // private playAndStopAnimation(animation: string) {
+        //     if (this._direction == Direction.RIGHT) {
+        //         this.Sprite.gotoAndStop(animation + "Right");
+        //     }
+        //     else {
+        //         this.Sprite.gotoAndStop(animation + "Left");
+        //     }
+        //     this._isPlayingAnimation = false;
+        // }
 
         public CheckBoundary() {
             super.CheckBoundary();

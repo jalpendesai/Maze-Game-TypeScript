@@ -17,11 +17,6 @@ var objects;
         __extends(Ladder, _super);
         function Ladder(x, y, width, height) {
             var _this = _super.call(this, x, y, width, height) || this;
-            _this.Sprite = new createjs.Sprite(new createjs.SpriteSheet({
-                framerate: 1,
-                images: [managers.GameManager.AssetManager.getResult("sprite_ladder")],
-                frames: { width: width, height: height }
-            }));
             _this.name = "ladder";
             _this.collider = new components.Collider(_this, 0, 0, width, height);
             _this.AddComponent(_this.collider);

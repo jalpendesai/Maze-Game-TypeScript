@@ -7,11 +7,7 @@ module objects {
             super(x, y, width, height);
             this.x = x;
             this.y = y;
-            this.Sprite = new createjs.Sprite(new createjs.SpriteSheet({
-                framerate: 1,
-                images: [managers.GameManager.AssetManager.getResult("sprite_platform")],
-                frames: { width: this.Width, height: this.Height }
-            }));
+            
             this.name = "platform";
             this.collider = new components.Collider(this, 0, 0, width, height);
             this.AddComponent(this.collider);

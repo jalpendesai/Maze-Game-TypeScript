@@ -15,26 +15,32 @@ var objects;
 (function (objects) {
     var Player = /** @class */ (function (_super) {
         __extends(Player, _super);
+        // constructor() {
+        //     super(1450, 1100, 32, 32, {
+        //         framerate: 1,
+        //         images: [managers.GameManager.AssetManager.getResult("spritesheet_player")],
+        //         frames: { width: 32, height: 32 },
+        //         animations: {
+        //             standRight: 15,
+        //             standLeft: 14,
+        //             runLeft: [16, 18, "runLeft", 0.5], // Frames, next, speed
+        //             runRight: [19, 21, "runRight", 0.5],
+        //             jumpLeft: [1, 6, "jumpLeft"],
+        //             jumpRight: [8, 13, "jumpRight"],
+        //             climbing: [22, 23]
+        //         }
+        //     });
         function Player() {
             var _this = _super.call(this, 1450, 1100, 32, 32, {
                 framerate: 1,
-                images: [managers.GameManager.AssetManager.getResult("spritesheet_player")],
-                frames: { width: 32, height: 32 },
-                animations: {
-                    standRight: 15,
-                    standLeft: 14,
-                    runLeft: [16, 18, "runLeft", 0.5],
-                    runRight: [19, 21, "runRight", 0.5],
-                    jumpLeft: [1, 6, "jumpLeft"],
-                    jumpRight: [8, 13, "jumpRight"],
-                    climbing: [22, 23]
-                }
+                images: [managers.GameManager.AssetManager.getResult("player")],
+                frames: { width: 32, height: 32 }
             }) || this;
             _this._movementSpeed = 5;
             _this._jumpForce = 100;
             _this.name = "player";
-            _this._direction = objects.Direction.RIGHT;
-            _this.playAndStopAnimation("stand");
+            _this._direction = objects.Direction.LEFT;
+            // this.playAndStopAnimation("stand");
             // Add Rigidbody to allow gravity
             _this._rb2d = new components.Rigidbody2D(_this);
             _this.AddComponent(_this._rb2d);
@@ -65,7 +71,7 @@ var objects;
         };
         Player.prototype.UpdateTransform = function () {
             this.checkMovementInput();
-            this.checkJumpInput();
+            // this.checkJumpInput();
             // Testing
             // if (managers.InputManager.KeyUp(config.Key.G)) {
             //     this._hp.Reduce(10);
@@ -77,21 +83,21 @@ var objects;
         Player.prototype.OnAction = function () {
             switch (this._action) {
                 case objects.Action.STANDING:
-                    this.playAndStopAnimation("stand");
+                    // this.playAndStopAnimation("stand");
                     break;
                 case objects.Action.WALKING:
                     if (!this._isPlayingAnimation) {
-                        this.playAnimation("run");
+                        // this.playAnimation("run");
                     }
                     break;
                 case objects.Action.JUMPING:
                     if (!this._isPlayingAnimation) {
-                        this.playAndStopAnimation("jump");
+                        // this.playAndStopAnimation("jump");
                     }
                     break;
                 case objects.Action.CLIMBING:
                     if (!this._isPlayingAnimation) {
-                        this.playAnimation("climbing");
+                        // this.playAnimation("climbing");
                     }
                     break;
                 case objects.Action.INTERACTING:
@@ -133,39 +139,39 @@ var objects;
                 this.x += this._movementSpeed * this._direction;
             }
         };
-        Player.prototype.checkJumpInput = function () {
-            if (managers.InputManager.KeyUp(config.Key.SPACE) && this._action != objects.Action.JUMPING) {
-                this._action = objects.Action.JUMPING;
-                createjs.Tween.get(this).to({ y: this.y - this._jumpForce }, 300).call(this.onFinishJump);
-                //createjs.Sound.play("sfxHit");
-            }
-            // if (managers.InputManager.KeyDown(config.Key.F)) {
-            //     // this.y -= this._jumpForce;
-            //     console.log("Current X= ",this.x);
-            //     console.log("Current Y= ",this.y);
-            // }
-            if (managers.InputManager.KeyDown(config.Key.V)) {
-                this.y += this._jumpForce;
-            }
-        };
-        Player.prototype.playAnimation = function (animation) {
-            if (this._direction == objects.Direction.RIGHT) {
-                this.Sprite.gotoAndPlay(animation + "Right");
-            }
-            else {
-                this.Sprite.gotoAndPlay(animation + "Left");
-            }
-            this._isPlayingAnimation = true;
-        };
-        Player.prototype.playAndStopAnimation = function (animation) {
-            if (this._direction == objects.Direction.RIGHT) {
-                this.Sprite.gotoAndStop(animation + "Right");
-            }
-            else {
-                this.Sprite.gotoAndStop(animation + "Left");
-            }
-            this._isPlayingAnimation = false;
-        };
+        // private checkJumpInput() {
+        //     if (managers.InputManager.KeyUp(config.Key.SPACE) && this._action != Action.JUMPING) {
+        //         this._action = Action.JUMPING;
+        //         createjs.Tween.get(this).to({ y: this.y - this._jumpForce }, 300).call(this.onFinishJump);
+        //         //createjs.Sound.play("sfxHit");
+        //     }
+        //     // if (managers.InputManager.KeyDown(config.Key.F)) {
+        //     //     // this.y -= this._jumpForce;
+        //     //     console.log("Current X= ",this.x);
+        //     //     console.log("Current Y= ",this.y);
+        //     // }
+        //     if (managers.InputManager.KeyDown(config.Key.V)) {
+        //         this.y += this._jumpForce;
+        //     }
+        // }
+        // private playAnimation(animation: string) {
+        //     if (this._direction == Direction.RIGHT) {
+        //         this.Sprite.gotoAndPlay(animation + "Right");
+        //     }
+        //     else {
+        //         this.Sprite.gotoAndPlay(animation + "Left");
+        //     }
+        //     this._isPlayingAnimation = true;
+        // }
+        // private playAndStopAnimation(animation: string) {
+        //     if (this._direction == Direction.RIGHT) {
+        //         this.Sprite.gotoAndStop(animation + "Right");
+        //     }
+        //     else {
+        //         this.Sprite.gotoAndStop(animation + "Left");
+        //     }
+        //     this._isPlayingAnimation = false;
+        // }
         Player.prototype.CheckBoundary = function () {
             _super.prototype.CheckBoundary.call(this);
         };

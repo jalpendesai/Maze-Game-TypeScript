@@ -19,11 +19,6 @@ var objects;
             var _this = _super.call(this, x, y, width, height) || this;
             _this.x = x;
             _this.y = y;
-            _this.Sprite = new createjs.Sprite(new createjs.SpriteSheet({
-                framerate: 1,
-                images: [managers.GameManager.AssetManager.getResult("sprite_platform")],
-                frames: { width: _this.Width, height: _this.Height }
-            }));
             _this.name = "platform";
             _this.collider = new components.Collider(_this, 0, 0, width, height);
             _this.AddComponent(_this.collider);
