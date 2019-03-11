@@ -195,7 +195,7 @@ var objects;
                 }
                 else if ((this.x < other.Collider.Left) && ((this.x && this.y) != other.Collider.Top && (this.x && this.y) != other.Collider.Bottom)) {
                     console.log("Left Collider");
-                    this.x = other.Collider.Left - this.PivotX - (this.Collider.Width);
+                    this.x = other.Collider.Left - this.PivotX;
                 }
                 else if ((this.y < other.Collider.Top) && ((this.x && this.y) != other.Collider.Left && (this.x && this.y) != other.Collider.Bottom) && (this.x && this.y) != other.Collider.Right) {
                     console.log("Top Collider");

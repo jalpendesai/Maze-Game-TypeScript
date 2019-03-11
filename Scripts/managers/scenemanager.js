@@ -99,7 +99,7 @@ var managers;
                     result = new scenes.Menu(new createjs.Bitmap(managers.GameManager.AssetManager.getResult("menu_bg")));
                     break;
                 case config.Scene.GameOver:
-                    result = new scenes.GameOver(new createjs.Bitmap(managers.GameManager.AssetManager.getResult("")));
+                    result = new scenes.GameOver(new createjs.Bitmap(managers.GameManager.AssetManager.getResult("gameOver_bg")));
                     break;
             }
             console.log("Scene Created");

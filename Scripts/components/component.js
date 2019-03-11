@@ -158,7 +158,7 @@ var components;
             _this._width = width;
             _this._height = height;
             _this._border = new createjs.Shape();
-            // this._border.graphics.setStrokeStyle(1).beginStroke("#00FF7F").drawRect(-this._offsetX, this._offsetY, width, height).endStroke();
+            _this._border.graphics.setStrokeStyle(1).beginStroke("#ff0000").drawRect(-_this._offsetX, _this._offsetY, width, height).endStroke();
             _this.owner.addChild(_this._border);
             console.log("Collider Info:");
             console.log(_this);
@@ -203,7 +203,7 @@ var components;
         });
         Object.defineProperty(Collider.prototype, "Bottom", {
             get: function () {
-                return this.owner.y + this._offsetY + this.Height;
+                return this.owner.y - this._offsetY + this.Height;
             },
             enumerable: true,
             configurable: true
@@ -217,7 +217,7 @@ var components;
         });
         Object.defineProperty(Collider.prototype, "Right", {
             get: function () {
-                return this.owner.x + this._offsetX + this.Width;
+                return this.owner.x - this._offsetX + this.Width;
             },
             enumerable: true,
             configurable: true
@@ -225,8 +225,8 @@ var components;
         Collider.prototype.AddAxis = function () {
             var axisX = new createjs.Shape();
             var axisY = new createjs.Shape();
-            // axisX.graphics.setStrokeStyle(1).beginStroke("#00FF00").drawRect(0, 0, 15, 1).endStroke();
-            // axisY.graphics.setStrokeStyle(1).beginStroke("#FF0000").drawRect(0, -15, 1, 15).endStroke();
+            axisX.graphics.setStrokeStyle(1).beginStroke("#00FF00").drawRect(0, 0, 15, 1).endStroke();
+            axisY.graphics.setStrokeStyle(1).beginStroke("#FF0000").drawRect(0, -15, 1, 15).endStroke();
             this.owner.addChild(axisX);
             this.owner.addChild(axisY);
         };

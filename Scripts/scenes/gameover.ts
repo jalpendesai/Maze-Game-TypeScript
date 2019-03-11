@@ -21,7 +21,7 @@ module scenes{
             let centerY = managers.GameManager.SceneManager.ScreenHeight / 2;
 
             this._btnRestart = new controls.Button(<createjs.Bitmap>managers.GameManager.AssetManager.getResult("btnStart"), 
-                                centerX, centerY + 40, true);
+                                centerX, centerY - 80, true);
 
             this._btnRestart.on('click',this._onRestartClicked);
             this.addChild(this._btnRestart);

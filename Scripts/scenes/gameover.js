@@ -27,7 +27,7 @@ var scenes;
         GameOver.prototype.Init = function () {
             var centerX = managers.GameManager.SceneManager.ScreenWidth / 2;
             var centerY = managers.GameManager.SceneManager.ScreenHeight / 2;
-            this._btnRestart = new controls.Button(managers.GameManager.AssetManager.getResult("btnStart"), centerX, centerY + 40, true);
+            this._btnRestart = new controls.Button(managers.GameManager.AssetManager.getResult("btnStart"), centerX, centerY - 80, true);
             this._btnRestart.on('click', this._onRestartClicked);
             this.addChild(this._btnRestart);
             // throw new Error("Method not implemented.");
