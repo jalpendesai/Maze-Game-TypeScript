@@ -181,21 +181,21 @@ module components {
             this._width = width;
             this._height = height;
             this._border = new createjs.Shape();
-            // this._border.graphics.setStrokeStyle(1).beginStroke("#ff0000").drawRect(-this._offsetX, this._offsetY, width, height).endStroke();
+            // this._border.graphics.setStrokeStyle(1).beginStroke("#ff0000").drawRect(-this._offsetX, -this._offsetY, width, height).endStroke();
             
             this.owner.addChild(this._border);
 
-            console.log("Collider Info:");
-            console.log(this);
+            // console.log("Collider Info:");
+            // console.log(this);
         }
 
         public AddAxis(){
             let axisX = new createjs.Shape();
-            let axisY = new createjs.Shape();
+            // let axisY = new createjs.Shape();
             // axisX.graphics.setStrokeStyle(1).beginStroke("#00FF00").drawRect(0, 0, 15, 1).endStroke();
             // axisY.graphics.setStrokeStyle(1).beginStroke("#FF0000").drawRect(0, -15, 1, 15).endStroke();
-            this.owner.addChild(axisX);
-            this.owner.addChild(axisY);
+            // this.owner.addChild(axisX);
+            // this.owner.addChild(axisY);
         }
 
         public ShowCollision(b : boolean){

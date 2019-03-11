@@ -144,7 +144,7 @@ var objects;
             this.OnAction();
         };
         GameObject.prototype.AddComponent = function (component) {
-            console.log("Added " + component.name + " to " + this.name);
+            // console.log("Added " + component.name + " to " + this.name);
             this._components.push(component);
         };
         GameObject.prototype.Instanitate = function (gameObject) {

@@ -38,6 +38,7 @@ var objects;
             }) || this;
             _this._movementSpeed = 5;
             _this._jumpForce = 100;
+            console.log(_this.x, _this.y);
             _this.name = "player";
             _this._direction = objects.Direction.LEFT;
             // this.playAndStopAnimation("stand");
@@ -65,9 +66,13 @@ var objects;
             // managers.GameManager.CurrentLevel.AddInGameGUIControl(this._shieldBar);
         }
         Player.prototype.Init = function () {
-            this.SetPivotPoint(this.Width / 2, 1);
+            this.SetPivotPoint(this.Width / 2, this.Height);
             // this._reloadScene = new managers.SceneManager();
             // managers.GameManager.SceneManager = this._reloadScene;
+        };
+        Player.prototype.OnSceneEnter = function () {
+            console.log("x=", this.x);
+            console.log("y=", this.y);
         };
         Player.prototype.UpdateTransform = function () {
             this.checkMovementInput();
@@ -195,24 +200,36 @@ var objects;
                 // managers.GameManager.SceneManager.LoadLevel(1);
                 // return;
                 // managers.GameManager.SceneManager.LoadLevel(1);
-                if ((this.x > other.Collider.Right) && ((this.x && this.y) != other.Collider.Top && (this.x && this.y) != other.Collider.Bottom)) {
-                    console.log("Right Collider");
-                    this.x = other.Collider.Right + this.PivotX;
+                // if ((this.x > other.Collider.Right) && ((this.x && this.y) != other.Collider.Top && (this.x && this.y) != other.Collider.Bottom)) {
+                //     console.log("Right Collider");
+                //     this.x = other.Collider.Right + this.PivotX ;
+                // }
+                // else if ((this.x < other.Collider.Left) && ((this.x && this.y) != other.Collider.Top && (this.x && this.y) != other.Collider.Bottom)) {
+                //     console.log("Left Collider");
+                //     this.x = other.Collider.Left - this.PivotX;
+                // }
+                // else if ((this.y < other.Collider.Top) && ((this.x && this.y)!=other.Collider.Left && (this.x && this.y)!=other.Collider.Bottom) && (this.x && this.y)!=other.Collider.Right) {
+                //     console.log("Top Collider");
+                //     this.y = other.Collider.Top - this.Collider.Height;
+                // }
+                // else if ((this.y < other.Collider.Bottom) && ((this.x && this.y) != other.Collider.Left && (this.x && this.y) != other.Collider.Right && (this.x && this.y) != other.Collider.Top)
+                // && (this.x > other.Collider.Left || this.x < other.Collider.Right)) {
+                //     console.log("Bottom Collider");
+                //     this.y = other.Collider.Bottom  + this.PivotY;
+                // }
+                if (this.x > other.Collider.Right) {
+                    this.x = other.Collider.Right + this.Collider.Width - this.PivotX;
                 }
-                else if ((this.x < other.Collider.Left) && ((this.x && this.y) != other.Collider.Top && (this.x && this.y) != other.Collider.Bottom)) {
-                    console.log("Left Collider");
-                    this.x = other.Collider.Left - this.PivotX;
+                else if (this.x < other.Collider.Left) {
+                    this.x = other.Collider.Left - this.Collider.Width + this.PivotX;
                 }
-                else if ((this.y < other.Collider.Top) && ((this.x && this.y) != other.Collider.Left && (this.x && this.y) != other.Collider.Bottom) && (this.x && this.y) != other.Collider.Right) {
-                    console.log("Top Collider");
-                    this.y = other.Collider.Top - this.Collider.Height;
+                else if (this.y > other.Collider.Bottom) {
+                    this.y = other.Collider.Bottom + this.Collider.Height;
                 }
-                else if ((this.y < other.Collider.Bottom) && ((this.x && this.y) != other.Collider.Left && (this.x && this.y) != other.Collider.Right && (this.x && this.y) != other.Collider.Top)
-                    && (this.x > other.Collider.Left || this.x < other.Collider.Right)) {
-                    console.log("Bottom Collider");
-                    this.y = other.Collider.Bottom + this.PivotY;
+                else if (this.y > other.Collider.Top) {
+                    this.y = other.Collider.Top;
                 }
-                // this.ReloadScene();
+                this.ReloadScene();
             }
             if (other.name === "ladder") {
                 // if (managers.InputManager.KeyDown(config.Key.UP)) {
@@ -248,7 +265,9 @@ var objects;
             }
         };
         Player.prototype.ReloadScene = function () {
-            managers.GameManager.SceneManager.LoadLevel(1);
+            // managers.GameManager.SceneManager.LoadLevel(1);
+            this.x = 1450;
+            this.y = 1100;
         };
         Player.prototype.GameOverScene = function () {
             managers.GameManager.SceneManager.ChangeScene(config.Scene.GameOver);

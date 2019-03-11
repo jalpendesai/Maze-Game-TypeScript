@@ -82,7 +82,7 @@ module scenes {
         }
 
         public AddGameObject(object: objects.GameObject) {
-            console.log("Added " + object.name);
+            // console.log("Added " + object.name);
             object.Collider.AddAxis();
             object.CurrentLevel = this;
             this._gameObjects.push(object);

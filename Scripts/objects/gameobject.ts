@@ -125,7 +125,7 @@ module objects {
         }
 
         public AddComponent(component: components.Component) {
-            console.log("Added " + component.name + " to " + this.name);
+            // console.log("Added " + component.name + " to " + this.name);
             this._components.push(component);
         }
 

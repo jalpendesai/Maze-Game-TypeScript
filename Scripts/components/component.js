@@ -158,11 +158,11 @@ var components;
             _this._width = width;
             _this._height = height;
             _this._border = new createjs.Shape();
-            // this._border.graphics.setStrokeStyle(1).beginStroke("#ff0000").drawRect(-this._offsetX, this._offsetY, width, height).endStroke();
+            // this._border.graphics.setStrokeStyle(1).beginStroke("#ff0000").drawRect(-this._offsetX, -this._offsetY, width, height).endStroke();
             _this.owner.addChild(_this._border);
-            console.log("Collider Info:");
-            console.log(_this);
             return _this;
+            // console.log("Collider Info:");
+            // console.log(this);
         }
         Object.defineProperty(Collider.prototype, "Width", {
             get: function () {
@@ -224,11 +224,11 @@ var components;
         });
         Collider.prototype.AddAxis = function () {
             var axisX = new createjs.Shape();
-            var axisY = new createjs.Shape();
+            // let axisY = new createjs.Shape();
             // axisX.graphics.setStrokeStyle(1).beginStroke("#00FF00").drawRect(0, 0, 15, 1).endStroke();
             // axisY.graphics.setStrokeStyle(1).beginStroke("#FF0000").drawRect(0, -15, 1, 15).endStroke();
-            this.owner.addChild(axisX);
-            this.owner.addChild(axisY);
+            // this.owner.addChild(axisX);
+            // this.owner.addChild(axisY);
         };
         Collider.prototype.ShowCollision = function (b) {
             // this._border.graphics.setStrokeStyle(1).beginStroke(b ? "#FF0000" : "#00FF7F").drawRect(-this._offsetX, -this._offsetY, this._width, this._height).endStroke();
