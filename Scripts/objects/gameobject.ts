@@ -108,12 +108,12 @@ module objects {
 
             // Add PivotPoint
             let pivotPoint = new createjs.Shape();
-            pivotPoint.graphics.setStrokeStyle(1).beginStroke("#0000FF").drawCircle(0, 0, 1).endStroke();
+            // pivotPoint.graphics.setStrokeStyle(1).beginStroke("#0000FF").drawCircle(0, 0, 1).endStroke();
             this.addChild(pivotPoint);
 
             // Add PivotPoint
             let position = new createjs.Shape();
-            position.graphics.setStrokeStyle(1).beginStroke("#FFFF00").drawCircle(0, 0, 3).endStroke();
+            // position.graphics.setStrokeStyle(1).beginStroke("#FFFF00").drawCircle(0, 0, 3).endStroke();
             this.addChild(position);
         }
 

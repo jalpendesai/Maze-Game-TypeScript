@@ -33,7 +33,7 @@ var levels;
             this._backgroundMusic = createjs.Sound.play("bgmFloor1");
             this._backgroundMusic.loop = -1; // looping forever
             this._backgroundMusic.volume = 0.3;
-            this._backgroundMusic.stop();
+            // this._backgroundMusic.stop();
             // }
             // PlatformB
             // this.AddGameObject(new objects.Platform(0, 80, managers.GameManager.CurrentLevel.LevelWidth - 1, 23));

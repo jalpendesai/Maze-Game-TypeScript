@@ -27,7 +27,7 @@ module levels {
                 this._backgroundMusic = createjs.Sound.play("bgmFloor1");
                 this._backgroundMusic.loop = -1; // looping forever
                 this._backgroundMusic.volume = 0.3;
-                this._backgroundMusic.stop();
+                // this._backgroundMusic.stop();
             // }
             
             
