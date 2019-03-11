@@ -10,8 +10,6 @@ var config;
     var GameInfo = /** @class */ (function () {
         function GameInfo() {
         }
-        GameInfo.GameName = "Spiky Village";
-        GameInfo.Version = "Jalpen Desai";
         return GameInfo;
     }());
     config.GameInfo = GameInfo;

@@ -181,7 +181,7 @@ module components {
             this._width = width;
             this._height = height;
             this._border = new createjs.Shape();
-            this._border.graphics.setStrokeStyle(1).beginStroke("#00FF7F").drawRect(-this._offsetX, this._offsetY, width, height).endStroke();
+            // this._border.graphics.setStrokeStyle(1).beginStroke("#00FF7F").drawRect(-this._offsetX, this._offsetY, width, height).endStroke();
             
             this.owner.addChild(this._border);
 
@@ -192,14 +192,14 @@ module components {
         public AddAxis(){
             let axisX = new createjs.Shape();
             let axisY = new createjs.Shape();
-            axisX.graphics.setStrokeStyle(1).beginStroke("#00FF00").drawRect(0, 0, 15, 1).endStroke();
-            axisY.graphics.setStrokeStyle(1).beginStroke("#FF0000").drawRect(0, -15, 1, 15).endStroke();
+            // axisX.graphics.setStrokeStyle(1).beginStroke("#00FF00").drawRect(0, 0, 15, 1).endStroke();
+            // axisY.graphics.setStrokeStyle(1).beginStroke("#FF0000").drawRect(0, -15, 1, 15).endStroke();
             this.owner.addChild(axisX);
             this.owner.addChild(axisY);
         }
 
         public ShowCollision(b : boolean){
-            // this._border.graphics.setStrokeStyle(1).beginStroke(b ? "#FF0000" : "#00FF7F").drawRect(-this._offsetX, -this._offsetY, this._width, this._height).endStroke();
+            this._border.graphics.setStrokeStyle(1).beginStroke(b ? "#FF0000" : "#00FF7F").drawRect(-this._offsetX, -this._offsetY, this._width, this._height).endStroke();
         }
 
         public Update(): void {

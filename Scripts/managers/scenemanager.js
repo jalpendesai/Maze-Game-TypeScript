@@ -86,7 +86,6 @@ var managers;
             // Call the on scene enter function to do a proper init
             var newScene = this._createNewLevel(index);
             if (newScene != undefined || newScene != null) {
-                console.log("654615666666664555555555555555555555555555555555555555555555555555");
                 this._currentScene = newScene; // set to new scene
                 this._currentScene.OnSceneEnter(); // Init scene
                 this._stage.removeAllChildren(); // free memory
@@ -97,10 +96,10 @@ var managers;
             var result;
             switch (type) {
                 case config.Scene.Menu:
-                    result = new scenes.Menu(new createjs.Bitmap(managers.GameManager.AssetManager.getResult("")));
+                    result = new scenes.Menu(new createjs.Bitmap(managers.GameManager.AssetManager.getResult("menu_bg")));
                     break;
                 case config.Scene.GameOver:
-                    result = new scenes.GameOver(new createjs.Bitmap(managers.GameManager.AssetManager.getResult("level2")));
+                    result = new scenes.GameOver(new createjs.Bitmap(managers.GameManager.AssetManager.getResult("")));
                     break;
             }
             console.log("Scene Created");

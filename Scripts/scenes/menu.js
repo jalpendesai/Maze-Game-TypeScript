@@ -39,10 +39,10 @@ var scenes;
             var _this = this;
             var centerX = managers.GameManager.SceneManager.ScreenWidth / 2;
             var centerY = managers.GameManager.SceneManager.ScreenHeight / 2;
-            this._lbGameName = new controls.Label(config.GameInfo.GameName, centerX, centerY / 2, 50, "Arial bold", "#000000", true);
-            this._lbVersion = new controls.Label(config.GameInfo.Version, 0, 0, 15, "Arial bold", "#000000", true);
-            this._lbVersion.x = this._lbVersion.getMeasuredWidth();
-            this._lbVersion.y = managers.GameManager.SceneManager.ScreenHeight - this._lbVersion.getMeasuredHeight();
+            // this._lbGameName = new controls.Label(config.GameInfo.GameName, centerX, centerY / 2, 50, "Arial bold", "#000000", true);
+            // this._lbVersion = new controls.Label(config.GameInfo.Version, 0, 0, 15, "Arial bold", "#000000", true);
+            // this._lbVersion.x = this._lbVersion.getMeasuredWidth();
+            // this._lbVersion.y = managers.GameManager.SceneManager.ScreenHeight - this._lbVersion.getMeasuredHeight();
             this._btnStart = new controls.Button(managers.GameManager.AssetManager.getResult("btnStart"), centerX, centerY + 40, true);
             this._btnMute = new controls.Button(managers.GameManager.AssetManager.getResult("btnUnmute"), managers.GameManager.SceneManager.ScreenWidth - 40, managers.GameManager.SceneManager.ScreenHeight - 40, true);
             this._btnStart.on('click', this._onStartClicked);
@@ -50,8 +50,8 @@ var scenes;
             // this._btnMute.on('click', this._onMuteClicked); //  'this' refers to button
             // this._btnMute.addEventListener('click', this._onMuteClicked); //  'this' refers to windows
             this._btnMute.on('click', function () { return _this._onMuteClicked(); }); //  'this' refers to menu
-            this.addChild(this._lbGameName);
-            this.addChild(this._lbVersion);
+            // this.addChild(this._lbGameName);
+            // this.addChild(this._lbVersion);
             this.addChild(this._btnStart);
             this.addChild(this._btnMute);
         };

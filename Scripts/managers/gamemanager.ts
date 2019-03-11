@@ -18,9 +18,10 @@ module managers {
             { id: "spritesheet_obstacle", src: "./Assets/sprites/player/placeholder-obstacle.png" },
             { id: "sprite_platform", src: "./Assets/sprites/environment/platform.png" },
             { id: "sprite_ladder", src: "./Assets/sprites/environment/ladder.png" },
+            {id: "menu_bg", src:"./Assets/sprites/environment/menu.png"},
 
             // Level Backgrounds
-            { id: "level1", src: "./Assets/sprites/environment/maze.png" },
+            { id: "level1", src: "./Assets/sprites/environment/maze_Updated.png" },
             // { id: "level1", src: "./Assets/sprites/environment/background-tile.png" },
             { id: "level2", src: "./Assets/sprites/environment/level2.png" },
             { id: "level3", src: "./Assets/sprites/environment/level3.png" },
