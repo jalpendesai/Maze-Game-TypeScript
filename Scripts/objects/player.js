@@ -16,7 +16,7 @@ var objects;
     var Player = /** @class */ (function (_super) {
         __extends(Player, _super);
         function Player() {
-            var _this = _super.call(this, 0, 730, 32, 32, {
+            var _this = _super.call(this, 0, 700, 32, 32, {
                 framerate: 1,
                 images: [managers.GameManager.AssetManager.getResult("spritesheet_player")],
                 frames: { width: 32, height: 32 },
@@ -60,6 +60,8 @@ var objects;
         }
         Player.prototype.Init = function () {
             this.SetPivotPoint(this.Width / 2, 1);
+            // this._reloadScene = new managers.SceneManager();
+            // managers.GameManager.SceneManager = this._reloadScene;
         };
         Player.prototype.UpdateTransform = function () {
             this.checkMovementInput();
@@ -172,24 +174,28 @@ var objects;
             createjs.Tween.get(this).to({ y: this.y + this._jumpForce }, 500).call(function () { return _this._action = objects.Action.STANDING; });
         };
         Player.prototype.OnCollisionEnter = function (other) {
-            if (this._action != objects.Action.CLIMBING) {
-                // if (other.name === "platform") {
-                //     this.y = other.Collider.Top + this.regY / 2;
-                // }
-            }
-            else {
-                if (utils.Util.NotNullOrUndefined(this._lastPlatform) && this._lastPlatform == other) {
-                    this._action = objects.Action.STANDING;
-                }
-            }
+            // if (this._action != Action.CLIMBING) {
+            //     // if (other.name === "platform") {
+            //     //     this.y = other.Collider.Top + this.regY / 2;
+            //     // }
+            // }
+            // else {
+            //     if (utils.Util.NotNullOrUndefined(this._lastPlatform) && this._lastPlatform == other) {
+            //         this._action = Action.STANDING;
+            //     }
+            // }
             if (other.name === "platform") {
+                console.log("Collided");
+                // managers.GameManager.SceneManager.LoadLevel(1);
+                // return;
+                // managers.GameManager.SceneManager.LoadLevel(1);
                 if ((this.x > other.Collider.Right) && ((this.x && this.y) != other.Collider.Top && (this.x && this.y) != other.Collider.Bottom)) {
                     console.log("Right Collider");
                     this.x = other.Collider.Right + this.PivotX;
                 }
                 else if ((this.x < other.Collider.Left) && ((this.x && this.y) != other.Collider.Top && (this.x && this.y) != other.Collider.Bottom)) {
                     console.log("Left Collider");
-                    this.x = other.Collider.Left - this.PivotX - (this.Collider.Width);
+                    this.x = other.Collider.Left - this.PivotX - (this.Collider.Width) - 50;
                 }
                 else if ((this.y < other.Collider.Top) && ((this.x && this.y) != other.Collider.Left && (this.x && this.y) != other.Collider.Bottom) && (this.x && this.y) != other.Collider.Right) {
                     console.log("Top Collider");
@@ -200,6 +206,7 @@ var objects;
                     console.log("Bottom Collider");
                     this.y = other.Collider.Bottom + this.PivotY;
                 }
+                this.ReloadScene();
             }
             if (other.name === "ladder") {
                 // if (managers.InputManager.KeyDown(config.Key.UP)) {
@@ -216,6 +223,11 @@ var objects;
                 //     this.y += this._movementSpeed;
                 // }
                 // let go = levels.Level1.OnLevelCompleted();
+                // this._reloadScene.ChangeScene(config.Scene.GameOver);
+                // if(this._reloadScene != null){
+                //     this._reloadScene.Update();
+                // }
+                this.GameOverScene();
             }
         };
         Player.prototype.OnCollisionExit = function (other) {
@@ -228,6 +240,12 @@ var objects;
                 //     this._isClamping = false;
                 // }
             }
+        };
+        Player.prototype.ReloadScene = function () {
+            managers.GameManager.SceneManager.LoadLevel(1);
+        };
+        Player.prototype.GameOverScene = function () {
+            managers.GameManager.SceneManager.ChangeScene(config.Scene.GameOver);
         };
         return Player;
     }(objects.GameObject));

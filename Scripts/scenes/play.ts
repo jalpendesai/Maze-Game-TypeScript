@@ -49,8 +49,8 @@ module scenes {
             this.addChild(this._gameLayer);
             this.addChild(this._guiLayer);
 
-            this.player = new objects.Player();
-            this.AddGameObject(this.player);
+            // this.player = new objects.Player();
+            // this.AddGameObject(this.player);
         }
 
         public Update(): void {

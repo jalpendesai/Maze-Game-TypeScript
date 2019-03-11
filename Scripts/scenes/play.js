@@ -29,9 +29,9 @@ var scenes;
             _this._guiLayer = new createjs.Container();
             _this.addChild(_this._gameLayer);
             _this.addChild(_this._guiLayer);
-            _this.player = new objects.Player();
-            _this.AddGameObject(_this.player);
             return _this;
+            // this.player = new objects.Player();
+            // this.AddGameObject(this.player);
         }
         Object.defineProperty(Play.prototype, "GUILayer", {
             get: function () {

@@ -11,7 +11,7 @@ var config;
         function GameInfo() {
         }
         GameInfo.GameName = "Spiky Village";
-        GameInfo.Version = "v1.0";
+        GameInfo.Version = "Jalpen Desai";
         return GameInfo;
     }());
     config.GameInfo = GameInfo;

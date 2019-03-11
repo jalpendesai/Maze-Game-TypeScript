@@ -21,6 +21,8 @@ var levels;
         Level1.prototype.Init = function () {
             this.SetLevelSize(1550, 1150);
             this.SetLevelBoundarySize(1);
+            this.player = new objects.Player();
+            this.AddGameObject(this.player);
             // Trap
             // for (let i = 0; i < this._numberOfObstacles; i++) {
             //     let enemy = new objects.Obstacle();
@@ -55,7 +57,7 @@ var levels;
             this.AddGameObject(new objects.Platform(1265, 255, 1, 120));
             this.AddGameObject(new objects.Platform(1265, 590, 1, 470));
             this.AddGameObject(new objects.Platform(1370, 45, 1, 1015));
-            // Horizontal Rows
+            // // Horizontal Rows
             this.AddGameObject(new objects.Platform(380, 45, 985, 30));
             this.AddGameObject(new objects.Platform(282, 150, 83, 30));
             this.AddGameObject(new objects.Platform(710, 150, 95, 30));
@@ -84,10 +86,10 @@ var levels;
             // this.AddGameObject(new objects.Platform(0, 540, managers.GameManager.CurrentLevel.LevelWidth - 1, 23));
             // this.AddGameObject(new objects.Platform(0, 767, 880, 23));
             // this.AddGameObject(new objects.Platform(1020, 767, 900, 23));
-            // // Ladder
-            // // this.AddGameObject(new objects.Ladder(54, 75, 69, 260));
-            // this.AddGameObject(new objects.Ladder(90, 537, 66, 229));
-            // this.AddGameObject(new objects.Ladder(1700, 334, 64, 207));
+            // Ladder
+            // this.AddGameObject(new objects.Ladder(54, 75, 69, 260));
+            this.AddGameObject(new objects.Ladder(90, 537, 66, 229));
+            this.AddGameObject(new objects.Ladder(1700, 334, 64, 207));
         };
         Level1.prototype.OnSceneEnter = function () {
             console.log("Loading " + this.Name + "...");
@@ -100,7 +102,7 @@ var levels;
         };
         Level1.prototype.OnLevelCompleted = function () {
             // managers.GameManager.SceneManager.LoadLevel(2);
-            managers.GameManager.SceneManager._createNewScene(config.Scene.GameOver);
+            // managers.GameManager.SceneManager._createNewScene(config.Scene.GameOver);
         };
         return Level1;
     }(scenes.Play));

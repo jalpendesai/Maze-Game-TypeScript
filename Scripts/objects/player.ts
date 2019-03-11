@@ -9,6 +9,9 @@ module objects {
         private _hp: components.HealthComponent;
         private _shield: components.HealthComponent;
 
+
+        // private _reloadScene : managers.SceneManager;
+        // private _gameOverScene : managers.GameManager;
         // GUI Controls
         // private _healthBar: controls.ProgressBar;
         // private _shieldBar: controls.ProgressBar;
@@ -22,7 +25,7 @@ module objects {
         private _direction: objects.Direction;
 
         constructor() {
-            super(0, 730, 32, 32, {
+            super(0, 700, 32, 32, {
                 framerate: 1,
                 images: [managers.GameManager.AssetManager.getResult("spritesheet_player")],
                 frames: { width: 32, height: 32 },
@@ -67,6 +70,9 @@ module objects {
 
         public Init(): void {
             this.SetPivotPoint(this.Width / 2, 1);
+
+            // this._reloadScene = new managers.SceneManager();
+            // managers.GameManager.SceneManager = this._reloadScene;
         }
 
         public UpdateTransform(): void {
@@ -194,18 +200,22 @@ module objects {
 
         public OnCollisionEnter(other: objects.GameObject) {
 
-            if (this._action != Action.CLIMBING) {
-                // if (other.name === "platform") {
-                //     this.y = other.Collider.Top + this.regY / 2;
-                // }
-            }
-            else {
-                if (utils.Util.NotNullOrUndefined(this._lastPlatform) && this._lastPlatform == other) {
-                    this._action = Action.STANDING;
-                }
-            }
-            if (other.name === "platform") {
 
+            // if (this._action != Action.CLIMBING) {
+            //     // if (other.name === "platform") {
+            //     //     this.y = other.Collider.Top + this.regY / 2;
+            //     // }
+            // }
+            // else {
+            //     if (utils.Util.NotNullOrUndefined(this._lastPlatform) && this._lastPlatform == other) {
+            //         this._action = Action.STANDING;
+            //     }
+            // }
+            if (other.name === "platform") {
+                console.log("Collided");
+                // managers.GameManager.SceneManager.LoadLevel(1);
+                // return;
+                // managers.GameManager.SceneManager.LoadLevel(1);
 
                 if ((this.x > other.Collider.Right) && ((this.x && this.y) != other.Collider.Top && (this.x && this.y) != other.Collider.Bottom)) {
                     console.log("Right Collider");
@@ -214,7 +224,7 @@ module objects {
 
                 else if ((this.x < other.Collider.Left) && ((this.x && this.y) != other.Collider.Top && (this.x && this.y) != other.Collider.Bottom)) {
                     console.log("Left Collider");
-                    this.x = other.Collider.Left - this.PivotX - (this.Collider.Width);
+                    this.x = other.Collider.Left - this.PivotX - (this.Collider.Width) - 50;
                 }
 
                 else if ((this.y < other.Collider.Top) && ((this.x && this.y)!=other.Collider.Left && (this.x && this.y)!=other.Collider.Bottom) && (this.x && this.y)!=other.Collider.Right) {
@@ -227,6 +237,9 @@ module objects {
                     console.log("Bottom Collider");
                     this.y = other.Collider.Bottom  + this.PivotY;
                 }
+                this.ReloadScene();
+
+
             }
 
             if (other.name === "ladder") {
@@ -244,6 +257,12 @@ module objects {
                 //     this.y += this._movementSpeed;
                 // }
                 // let go = levels.Level1.OnLevelCompleted();
+
+                // this._reloadScene.ChangeScene(config.Scene.GameOver);
+                // if(this._reloadScene != null){
+                //     this._reloadScene.Update();
+                // }
+                this.GameOverScene();
             }
         }
 
@@ -257,6 +276,15 @@ module objects {
                 //     this._isClamping = false;
                 // }
             }
+
+        }
+
+        public ReloadScene(){
+            managers.GameManager.SceneManager.LoadLevel(1);
+        }
+
+        private GameOverScene(){
+            managers.GameManager.SceneManager.ChangeScene(config.Scene.GameOver);
         }
     }
 }
