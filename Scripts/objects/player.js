@@ -266,6 +266,8 @@ var objects;
         };
         Player.prototype.ReloadScene = function () {
             // managers.GameManager.SceneManager.LoadLevel(1);
+            this._sfxBallon = createjs.Sound.play("sfxHit");
+            this._sfxBallon.volume = 0.3;
             this.x = 1450;
             this.y = 1100;
         };

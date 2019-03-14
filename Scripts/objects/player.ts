@@ -8,6 +8,7 @@ module objects {
         private _rb2d: components.Rigidbody2D;
         private _hp: components.HealthComponent;
         private _shield: components.HealthComponent;
+        private _sfxBallon : createjs.AbstractSoundInstance;
 
 
         // private _reloadScene : managers.SceneManager;
@@ -81,6 +82,7 @@ module objects {
             this.SetPivotPoint(this.Width / 2, this.Height);
             // this._reloadScene = new managers.SceneManager();
             // managers.GameManager.SceneManager = this._reloadScene;
+            
         }
 
         public OnSceneEnter(): void {
@@ -307,6 +309,8 @@ module objects {
 
         public ReloadScene() {
             // managers.GameManager.SceneManager.LoadLevel(1);
+            this._sfxBallon = createjs.Sound.play("sfxHit");
+            this._sfxBallon.volume = 0.3;
             this.x = 1450;
             this.y = 1100;
         }
